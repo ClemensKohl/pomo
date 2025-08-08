@@ -1,0 +1,12 @@
+[package]
+name = "pomo"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ratatui = "0.28"
+crossterm = "0.28"
+rodio = "0.19"
+tokio = { version = "1.0", features = ["full"] }
+figlet-rs = "0.1"
+clap = { version = "4.0", features = ["derive"] }
