@@ -90,7 +90,7 @@ impl PomodoroTimer {
                 if self.break_remaining > elapsed {
                     self.break_remaining -= elapsed;
                 } else {
-                    self.break_remaining = self.break_duration;
+                    self.break_remaining = 0;
                     self.focus_remaining = self.focus_duration;
                     self.state = TimerState::Focus;
                     sound_needed = true;
@@ -128,14 +128,14 @@ impl PomodoroTimer {
 
     fn adjust_focus_time(&mut self, minutes: u64) {
         self.focus_duration = minutes * 60;
-        if self.state == TimerState::Focus {
+        if self.state == TimerState::Focus || self.state == TimerState::Paused {
             self.focus_remaining = self.focus_duration;
         }
     }
 
     fn adjust_break_time(&mut self, minutes: u64) {
         self.break_duration = minutes * 60;
-        if self.state == TimerState::Break {
+        if self.state == TimerState::Break || self.state == TimerState::Paused {
             self.break_remaining = self.break_duration;
         }
     }
